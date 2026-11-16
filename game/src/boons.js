@@ -8,7 +8,15 @@ export const boons=[
  ['pierce','Sun needle','Shots pierce one more foe','→',s=>s.player.pierce++],
  ['magnet','Ember affinity','Pull drops from farther away','◎',s=>s.player.magnet+=100],
  ['orbit','Satellite ember','An orbiting ember burns foes','◈',s=>s.player.orbits++],
+ ['swift','Swiftstep','Dash recovers 35% faster','↯',s=>s.player.dashRate=(s.player.dashRate||1)*.65],
+ ['focus','Deadly focus','+15% chance of double damage','✧',s=>s.player.crit=(s.player.crit||0)+.15],
+ ['siphon','Siphon','Kills restore 2 hull','♡',s=>s.player.siphon=(s.player.siphon||0)+2],
+ ['heavy','Heavy shot','+30% shot speed and size','●',s=>s.player.heavy=(s.player.heavy||1)*1.3],
+ ['ward','Flame ward','Heartflame drains 40% slower','◇',s=>s.player.ward=(s.player.ward||1)*.6],
+ ['nova','Ember nova','Wave start burns foes near flame','☼',s=>s.player.nova=(s.player.nova||0)+80],
  ['fortune','Radiant oath','+25% score for every kill','×',s=>s.player.mult+=.25]
 ];
-export function offerBoons(s){const pool=[...boons];s.choices=[];for(let i=0;i<3;i++)s.choices.push(pool.splice(Math.floor(s.rng()*pool.length),1)[0]);s.selected=0;}
+export function offerBoons(s,exclude=[]){const pool=boons.filter(b=>!exclude.includes(b[0]));s.rerolls=1;s.choices=[];for(let i=0;i<3;i++)s.choices.push(pool.splice(Math.floor(s.rng()*pool.length),1)[0]);s.selected=0;}
 export function takeBoon(s,index){const b=s.choices[index];if(!b)return;b[4](s);s.owned.push(b[0]);}
+
+export function rerollBoons(s){if(s.screen!=='boon'||!s.rerolls)return false;const previous=s.choices.map(b=>b[0]);offerBoons(s,previous);s.rerolls=0;return true;}
