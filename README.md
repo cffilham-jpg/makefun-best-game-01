@@ -17,6 +17,8 @@ Wraiths phase and blink toward you; weavers keep their distance and fire three-o
 
 ## Spend the light you swore to save
 
+Press **E** to plant an **Ember Ward** at your position for **10 light** (must have more than 10). Keep up to **3**: each auto-fires at nearby foes, survives between waves, and has 60 HP. Enemy contact and orbs destroy wards. Spend light on defense, save it for Heartburst, or hoard it to survive.
+
 Press **Q or F** for **Heartburst**: spend 15 Heartflame light to scorch every enemy (including phased Wraiths) and erase enemy orbs. Normal foes take 120 damage; elites and bosses take 160. There is no cooldown: each desperate blast spends the very light you must defend. Ember nova remains a separate opening-wave boon.
 
 Select **Ember / Ash / Cinder** on the title with the mouse or left/right arrows; Ash is the default. Ember reduces enemy hull by 25% and slows flame drain; Cinder increases enemy hull and speed by 30%, drains light faster, and awards 50% more score. Your selection persists on restart.
