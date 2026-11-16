@@ -1,0 +1,6 @@
+let ctx,muted=false,next=0,note=0;
+export function unlock(){if(!ctx)ctx=new AudioContext();if(ctx.state==='suspended')ctx.resume();}
+export function toggleMute(){muted=!muted;return muted;}
+export function tone(freq,duration=.1,type='sine',volume=.04,end=freq){if(!ctx||muted)return;const o=ctx.createOscillator(),g=ctx.createGain();o.type=type;o.frequency.setValueAtTime(freq,ctx.currentTime);o.frequency.exponentialRampToValueAtTime(Math.max(20,end),ctx.currentTime+duration);g.gain.setValueAtTime(volume,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+duration);o.connect(g).connect(ctx.destination);o.start();o.stop(ctx.currentTime+duration);}
+export function sound(kind){const sounds={shoot:[720,.065,'triangle',.025,220],hit:[180,.08,'square',.018,60],kill:[100,.2,'sawtooth',.025,30],pickup:[600,.2,'sine',.07,1200],wave:[180,.6,'triangle',.08,600],boss:[70,1,'sawtooth',.06,35],hurt:[120,.3,'sawtooth',.06,40]};if(kind==='victory'||kind==='defeat'){[0,1,2,3].forEach((n)=>setTimeout(()=>tone((kind==='victory'?330:220)*[1,1.25,1.5,2][n],.6,'triangle',.06),n*160));return;}tone(...(sounds[kind]||sounds.hit));}
+export function ambient(t){if(t<next)return;next=t+.42;const scale=[110,164.81,220,261.63,329.63,220,164.81,130.81];tone(scale[note++%8],1.6,'sine',.012);}
