@@ -1,3 +1,1 @@
-export function burst(s,x,y,color,count=16,power=140){for(let i=0;i<count;i++){const a=s.rng()*Math.PI*2,v=power*(.25+s.rng());s.particles.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,life:.4+s.rng()*.65,max:1,color,size:1+s.rng()*3});}}
-export function floatText(s,x,y,text,color='#ffdb8a',size=14){s.texts.push({x,y,text,color,size,life:1.1});}
-export function updateParticles(s,dt){for(const p of s.particles){p.x+=p.vx*dt;p.y+=p.vy*dt;p.vx*=.97;p.vy*=.97;p.life-=dt;}s.particles=s.particles.filter(p=>p.life>0);for(const p of s.texts){p.y-=27*dt;p.life-=dt;}s.texts=s.texts.filter(p=>p.life>0);}
+export function drawParticles(c,s,p){for(const a of s.fx){const q=p(a);c.globalAlpha=Math.max(0,a.life/2)*.5;c.strokeStyle='#e2f4db';c.lineWidth=a.type==='spray'?4:2;c.beginPath();c.ellipse(q.x,q.y,(2-a.life)*19+3,(2-a.life)*7+2,0,0,7);c.stroke();}c.globalAlpha=1;}

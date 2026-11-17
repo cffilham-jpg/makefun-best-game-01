@@ -1,6 +1,4 @@
-export const W=1280,H=720,CX=640,CY=380,STEP=1/60;
-export const colors={warden:'#f5b16b',wraith:'#a8d5ff',weaver:'#f3a56e',wisp:'#ac8dff',dasher:'#ff668a',spitter:'#62dfd2',splitter:'#d3a0ff',brute:'#8094ff',boss:'#f18bff',mini:'#ac8dff'};
-export const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+export const STEP=1/60, W=1280,H=720, MAP={w:1800,h:1100};
+export const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+export const angle=a=>Math.atan2(Math.sin(a),Math.cos(a));
 export const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
-// Distance from the Heartflame within which the Warden regenerates hull.
-export const FLAME_REGEN_RADIUS = 105;

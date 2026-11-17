@@ -1,2 +1,2 @@
-export function loadBest(){try{return Number(localStorage.getItem('emberward-best'))||0;}catch{return 0;}}
-export function saveBest(score){try{localStorage.setItem('emberward-best',String(Math.floor(score)));}catch{}}
+export function bestRun(){if(new URLSearchParams(location.search).has('shot'))return{gold:0,voyages:0,score:0};try{return JSON.parse(localStorage.getItem('tradewinds-best'))||{gold:0,voyages:0,score:0};}catch{return{gold:0,voyages:0,score:0};}}
+export function saveBest(s){const old=bestRun();if(s.completed>old.voyages||s.completed===old.voyages&&s.score>old.score){try{localStorage.setItem('tradewinds-best',JSON.stringify({gold:s.earned,voyages:s.completed,score:s.score}));}catch{}}}
